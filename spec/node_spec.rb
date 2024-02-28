@@ -18,7 +18,7 @@ describe Node do
       let(:other_node) { described_class.new(other_value) }
 
       it 'returns false' do
-        expect(node).not_to eq(other_node)
+        expect(node).to_not eq(other_node)
       end
     end
 
