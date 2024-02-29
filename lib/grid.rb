@@ -101,7 +101,7 @@ class Grid
     private
 
     def single_uphill_diagonal(row_index, column_index, node_arrays)
-      uphill_array = []
+      uphill_array = NodeArray.new
 
       while row_index >= 0 && column_index < node_arrays[row_index].length
         uphill_array.push(node_arrays[row_index][column_index])
@@ -113,7 +113,7 @@ class Grid
     end
 
     def single_downhill_diagonal(row_index, column_index, node_arrays)
-      downhill_array = []
+      downhill_array = NodeArray.new
 
       while row_index < node_arrays.length && column_index < node_arrays[row_index].length
         downhill_array.push(node_arrays[row_index][column_index])

@@ -83,6 +83,11 @@ describe Grid do
       described_class.derive_uphill_diagonal_major(input_arrays)
     end
 
+    before do
+      return_list = expected_arrays.map { [] }
+      allow(NodeArray).to receive(:new).and_return(*return_list)
+    end
+
     let(:input_arrays) do
       [%w[A1 B2 C3 D4 E5 F6 G7].freeze,
        %w[B1 C2 D3 E4 F5 G6 H7].freeze,
@@ -127,6 +132,11 @@ describe Grid do
   describe '.derive_downhill_diagonal_major' do
     subject(:downhill_diagonal_major) do
       described_class.derive_downhill_diagonal_major(input_arrays)
+    end
+
+    before do
+      return_list = expected_arrays.map { [] }
+      allow(NodeArray).to receive(:new).and_return(*return_list)
     end
 
     let(:input_arrays) do
