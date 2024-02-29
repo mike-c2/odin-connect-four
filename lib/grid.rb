@@ -50,7 +50,8 @@ class Grid
 
   class << self
     def build_row_major(initial_value = '', rows = DEFAULT_ROWS, columns = DEFAULT_COLUMNS)
-      row_major = Array.new(rows) { NodeArray.new(columns).freeze { Node.new(initial_value) } }
+      row_major = Array.new(rows) { NodeArray.new(columns) { Node.new(initial_value) } }
+      row_major.map!(&:freeze)
 
       row_major.freeze
     end
