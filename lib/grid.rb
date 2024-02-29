@@ -42,6 +42,12 @@ class Grid
     derive_all_majors
   end
 
+  def clear(new_value = '')
+    @row_major.each do |row|
+      row.each { |node| node.value = new_value }
+    end
+  end
+
   private
 
   def derive_all_majors
