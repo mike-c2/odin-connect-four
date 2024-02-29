@@ -34,11 +34,17 @@ class Grid
   attr_reader :row_major, :column_major, :uphill_diagonal_major, :downhill_diagonal_major, :all_majors
 
   def initialize(initial_value = '', num_rows = DEFAULT_ROWS, num_columns = DEFAULT_COLUMNS)
-    @row_major = build_row_major(initial_value, num_rows, num_columns)
-    @column_major = derive_column_major(row_major)
-    @uphill_diagonal_major = derive_uphill_diagonal_major(row_major)
-    @downhill_diagonal_major = derive_downhill_diagonal_major(row_major)
+    @row_major = self.class.build_row_major(initial_value, num_rows, num_columns)
+    @column_major = self.class.derive_column_major(row_major)
+    @uphill_diagonal_major = self.class.derive_uphill_diagonal_major(row_major)
+    @downhill_diagonal_major = self.class.derive_downhill_diagonal_major(row_major)
 
+    derive_all_majors
+  end
+
+  private
+
+  def derive_all_majors
     @all_majors = row_major + column_major + uphill_diagonal_major + downhill_diagonal_major
   end
 
