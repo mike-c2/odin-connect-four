@@ -57,7 +57,11 @@ class Grid
     end
 
     def derive_column_major(node_arrays)
-      column_major = node_arrays.transpose.map(&:freeze)
+      column_major = node_arrays.transpose.map do |arr|
+        node_array = NodeArray.new
+        node_array.replace(arr)
+        node_array.freeze
+      end
 
       column_major.freeze
     end

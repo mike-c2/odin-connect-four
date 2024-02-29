@@ -47,7 +47,17 @@ describe Grid do
 
   describe '.derive_column_major' do
     subject(:column_major) do
-      described_class.derive_column_major(row_major)
+      described_class.derive_column_major(node_array)
+    end
+
+    before do
+      return_list = []
+      7.times { return_list << [] }
+      allow(NodeArray).to receive(:new).and_return(*return_list)
+    end
+
+    let(:node_array) do
+      Array.new(6) { Array.new(7, 'X') }
     end
 
     context 'when the transposed 2-dimensional Array is returned' do
