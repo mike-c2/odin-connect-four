@@ -48,10 +48,31 @@ class Grid
     end
   end
 
+  def to_s
+    pretty_grid = ''
+
+    @row_major.each do |row|
+      pretty_grid += row_separator
+
+      row.each do |node|
+        pretty_grid += "| #{node} "
+      end
+
+      pretty_grid += "|\n"
+    end
+
+    pretty_grid += row_separator
+  end
+
   private
 
   def derive_all_majors
     @all_majors = row_major + column_major + uphill_diagonal_major + downhill_diagonal_major
+  end
+
+  def row_separator
+    line_length = @row_major.first.length * 4 + 1
+    "#{'-' * line_length}\n"
   end
 
   class << self

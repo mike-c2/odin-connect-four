@@ -189,4 +189,98 @@ describe Grid do
       end
     end
   end
+
+  describe '#to_s' do
+    subject(:grid) { described_class.new }
+
+    before do
+      dummy_array = []
+      allow(described_class).to receive(:build_row_major).and_return(dummy_array)
+      allow(described_class).to receive(:derive_column_major).with(row_major).and_return(dummy_array)
+      allow(described_class).to receive(:derive_uphill_diagonal_major).with(row_major).and_return(dummy_array)
+      allow(described_class).to receive(:derive_downhill_diagonal_major).with(row_major).and_return(dummy_array)
+      allow(grid).to receive(:derive_all_majors)
+    end
+
+    context 'when the grid is 1x1' do
+      let(:grid_values) do
+        [['A'].freeze].freeze
+      end
+
+      let(:expected_output) do
+        <<~GRID
+          -----
+          | A |
+          -----
+        GRID
+      end
+
+      it 'return string table of 1x1 grid' do
+        grid.instance_variable_set(:@row_major, grid_values)
+
+        expect(grid.to_s).to eq(expected_output)
+      end
+    end
+
+    context 'when the grid is 3x3' do
+      let(:grid_values) do
+        [[' ', 'A', 'B'].freeze,
+         %w[C D E].freeze,
+         %w[F G H].freeze].freeze
+      end
+
+      let(:expected_output) do
+        <<~GRID
+          -------------
+          |   | A | B |
+          -------------
+          | C | D | E |
+          -------------
+          | F | G | H |
+          -------------
+        GRID
+      end
+
+      it 'return string table of 3x3 grid' do
+        grid.instance_variable_set(:@row_major, grid_values)
+
+        expect(grid.to_s).to eq(expected_output)
+      end
+    end
+
+    context 'when the grid is 6x7' do
+      let(:grid_values) do
+        [[' ', ' ', ' ', ' ', ' ', ' ', ' '].freeze,
+         [' ', ' ', ' ', ' ', 'A', ' ', ' '].freeze,
+         ['B', ' ', 'C', 'D', 'E', 'F', 'G'].freeze,
+         %w[H I J K L M N].freeze,
+         %w[O P Q R S T U].freeze,
+         %w[V W X Y Z 1 2].freeze].freeze
+      end
+
+      let(:expected_output) do
+        <<~GRID
+          -----------------------------
+          |   |   |   |   |   |   |   |
+          -----------------------------
+          |   |   |   |   | A |   |   |
+          -----------------------------
+          | B |   | C | D | E | F | G |
+          -----------------------------
+          | H | I | J | K | L | M | N |
+          -----------------------------
+          | O | P | Q | R | S | T | U |
+          -----------------------------
+          | V | W | X | Y | Z | 1 | 2 |
+          -----------------------------
+        GRID
+      end
+
+      it 'return string table of 6x7 grid' do
+        grid.instance_variable_set(:@row_major, grid_values)
+
+        expect(grid.to_s).to eq(expected_output)
+      end
+    end
+  end
 end
