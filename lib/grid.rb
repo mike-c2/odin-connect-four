@@ -70,7 +70,7 @@ class Grid
   end
 
   def row_separator
-    line_length = @row_major.first.length * 4 + 1
+    line_length = (@row_major.first.length * 4) + 1
     "#{'-' * line_length}\n"
   end
 
