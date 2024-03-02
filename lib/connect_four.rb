@@ -45,4 +45,13 @@ class ConnectFour
   def reset
     @grid.clear(BLANK)
   end
+
+  def to_s
+    @grid.column_major.each_with_index do |_, index|
+      print "  #{index + 1} "
+    end
+
+    puts
+    @grid.to_s
+  end
 end
