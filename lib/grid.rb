@@ -50,7 +50,7 @@ class Grid
   def to_s
     pretty_grid = ''
 
-    @row_major.each do |row|
+    @row_major.reverse.each do |row|
       pretty_grid += row_separator
 
       row.each do |node|
