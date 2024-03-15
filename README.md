@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This is a text-based Connect 4 game that was made as part of [The Odin Project](https://www.theodinproject.com), which written in Ruby.
+This is a text-based Connect 4 game that was made as part of [The Odin Project](https://www.theodinproject.com), which is written in Ruby.
 
 The project details can be found at [Project: Connect Four](https://www.theodinproject.com/lessons/ruby-connect-four).
 
